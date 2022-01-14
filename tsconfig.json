@@ -36,5 +36,5 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/Navbar/Navbar.jsx", "pages/_app.jsx", "pages/about/index.jsx", "components/Layout/Layout.jsx"  ]
+, "components/Navbar/Navbar.jsx", "pages/_app.jsx", "pages/about/index.jsx", "components/Layout/Layout.jsx", "pages/index.jsx"  ]
 }
