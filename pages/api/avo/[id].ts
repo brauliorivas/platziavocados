@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import DB from '@database'
+import DB from '../../../database/db'
 import enablePublicAccess from '@cors'
 
 const AvoDetail = async (req: NextApiRequest, res: NextApiResponse) => {

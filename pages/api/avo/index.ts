@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import DB from '@database'
+import DB from '../../../database/db'
 import enablePublicAccess from '@cors'
 
 const allAvos = async (req: IncomingMessage, res: ServerResponse) => {
