@@ -1,12 +1,19 @@
 import React from "react";
 import Navbar from "@components/Navbar/Navbar";
+import Footer from "@components/Footer/Footer";
 
 const Layout: React.FC = ( { children }) => {
     return (
-        <div>
+        <div className="container">
+            <a id="top"></a>
             <Navbar />
             {children}
-            <footer>This is the footer</footer>
+            <Footer />
+            <style jsx>{`
+                .container {
+                    width: 100%;
+                }
+            `}</style>
         </div>
     );
 }

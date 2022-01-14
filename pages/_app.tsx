@@ -1,16 +1,20 @@
 import { AppProps } from 'next/app';
 import Layout from '@components/Layout/Layout';
-
-import 'tailwindcss/tailwind.css';
+import '../global.css';
+import useCart from '../hooks/useCart';
+import CartContext from '../context/CartContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    // usar myapp para context, providers, theme, etc
-    // layour comun para todas las paginas
-    // props adicionales
+  const cart = useCart();
+  // usar myapp para context, providers, theme, etc
+  // layout comun para todas las paginas
+  // props adicionales
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <CartContext.Provider value={cart}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </CartContext.Provider>
   );
 }
 

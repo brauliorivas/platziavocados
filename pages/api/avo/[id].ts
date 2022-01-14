@@ -15,7 +15,12 @@ const AvoDetail = async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Notice: We're using Next.JS response helpers here :)
     // https://nextjs.org/docs/api-routes/response-helpers
-    res.status(200).json(avo)
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    // res.status(200).json(avo)
+    // res.end(JSON.stringify(avo));
+    res.json(avo);
+
   } catch (e) {
     console.error(e)
     res.status(404).end()

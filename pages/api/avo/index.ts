@@ -16,7 +16,7 @@ const allAvos = async (req: IncomingMessage, res: ServerResponse) => {
     // However Next.JS offers Express-like helpers :)
     // https://nextjs.org/docs/api-routes/response-helpers
     res.statusCode = 200
-    res.setHeader('Content-Type', 'application/json')
+    res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ lenght, data: allEntries }))
   } catch (e) {
     console.error(e)
