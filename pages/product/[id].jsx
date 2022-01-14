@@ -21,11 +21,19 @@ const ProductPage = () => {
   }, [query.id]);
 
   const onSubmit = () => {
-    const quantity = parseInt(input.current.value);
-    addToCart({
-      quantity,
-      product,
-    });
+    if (validate(input.current.value)) {
+      const quantity = parseInt(input.current.value);
+      addToCart({
+        quantity,
+        product,
+      });
+    }
+  }
+
+  const validate = (value) => {
+    if (value > 0 && (value % 1 === 0)) {
+      return true;
+    }
   }
 
   if (!product.name) {
@@ -46,7 +54,7 @@ const ProductPage = () => {
             </p>
           </div>
           <div className="product__cart-handle">
-            <input type="number" ref={input} value="1"/>
+            <input type="number" ref={input} placeholder="1"/>
             <button onClick={onSubmit}><i className="fas fa-cart-plus"></i>Add to Cart</button>
           </div>
         </div>

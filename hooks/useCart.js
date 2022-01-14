@@ -24,14 +24,11 @@ const useCart = () => {
     }
 
     const removeFromCart = (product) => {
-        console.log(product);
-        console.log(cart)
         setCart(cart.filter(item => item.product.id !== product.product.id));
     }
 
     const hydrateCart = () => {
         if (localCart) {
-            console.log('info retrieved from local storage');
             setCart(JSON.parse(localCart));
         }   
     }
@@ -55,7 +52,6 @@ const useCart = () => {
     useEffect(() => {
         saveChanges();
         setTotal(calculateTotal());
-        console.log('cambios guardados')
     }, [cart])
 
 

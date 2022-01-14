@@ -20,7 +20,6 @@ export default function Navbar() {
       document.getElementById('avostore').style.backgroundColor = 'transparent';
       document.getElementById('cart').style.backgroundColor = 'transparent';
     }
-    console.log(pathName);
   }, [pathName]);
 
 
@@ -78,6 +77,9 @@ export default function Navbar() {
           align-items: center;
         }
 
+        .header-toggle {
+          width: 100%;
+        }
         .header-avo-store__p {
           margin-right: 10px;
           font-size: 1.6rem;
@@ -88,6 +90,9 @@ export default function Navbar() {
         }
         .header__p {
           font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
+        }
+        #cart {
+          min-width: 120px;
         }
         @media (min-width: 426px) {
           .icon {
