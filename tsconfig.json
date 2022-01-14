@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@database": [
-        "database/db.ts"
+        "hooks/database/db.ts"
       ],
       "@cors": [
         "cors-middleware.ts"
@@ -36,5 +36,5 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ]
+, "components/Navbar/Navbar.jsx", "pages/_app.jsx", "pages/about/index.jsx", "components/Layout/Layout.jsx"  ]
 }

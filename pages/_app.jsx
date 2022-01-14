@@ -4,7 +4,7 @@ import '../global.css';
 import useCart from '../hooks/useCart';
 import CartContext from '../context/CartContext';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps } ) {
   const cart = useCart();
   // usar myapp para context, providers, theme, etc
   // layout comun para todas las paginas
