@@ -2,25 +2,40 @@ import React, { useEffect, useState, useRef, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import CartContext from '../../context/CartContext';
+// import { GetStaticProps } from 'next';
 
-const ProductPage = () => {
-  const { query } = useRouter();
+export const getStaticPaths = async () => {
+  const response = await fetch(`https://platziavocados.vercel.app/api/avo`);
+  const { data } = await response.json(); 
+
+  const paths = data.map(({ id }) => ({
+    params: {
+      id
+    }
+  }));
+
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export const getStaticProps = async ({ params }) => { // solo paginas, no componentes al igual que SSR
+  // const protocol = process.env.PROTOCOL;
+  // const url = process.env.URL;
+  const response = await fetch(`https://platziavocados.vercel.app/api/avo/${params.id}`);
+  const item = await response.json(); 
+
+  return {
+    props: {
+      product: item
+    }
+  }
+}
+
+const ProductPage = ( { product } ) => {
   const { addToCart } = useContext(CartContext);
-
-  const [product, setProduct] = useState([]);
-  
-  const protocol = process.env.PROTOCOL;
-  const url = process.env.URL;
   const input = useRef(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`/api/avo/${query.id}`);
-      const data = await response.json();
-      setProduct(data);
-    };
-    fetchData();
-  }, [query.id]);
 
   const onSubmit = () => {
     if (validate(input.current.value)) {
@@ -38,9 +53,6 @@ const ProductPage = () => {
     }
   }
 
-  if (!product.name) {
-    return <div>Loading...</div>;
-  }
   return (
     <section className="product">
       <div className="product__data">
