@@ -6,5 +6,9 @@ module.exports = {
                 destination: '/product/:path*',
             }
         ]
+    },
+    images: {
+        loader: 'akamai',
+        path: '/'
     }
 }
