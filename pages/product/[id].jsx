@@ -8,7 +8,9 @@ const ProductPage = () => {
   const { addToCart } = useContext(CartContext);
 
   const [product, setProduct] = useState([]);
-
+  
+  const protocol = process.env.PROTOCOL;
+  const url = process.env.URL;
   const input = useRef(null);
 
   useEffect(() => {

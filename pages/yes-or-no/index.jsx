@@ -1,34 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from 'next/link';
 
 const index = () => {
     const [result, setResult] = useState('');
-    const [answer, setAnswer] = useState(null);
-    const [button, setButton] = useState(null);
-    const [text, setText] = useState(null);
-    const [loader, setLoader] = useState(null);
+    const answer = useRef(null);
+    const button = useRef(null);
+    const text = useRef(null);
+    const loader = useRef(null);
+
     const green = '#21ba45';
     const grey = '#cacbcd'
 
     useEffect(() => {
-        answer = document.getElementById('result');
-        button = document.getElementById('try-again');
-        text = document.getElementById('text');
-        loader = document.getElementById('loader');
-        setAnswer(answer);
-        setButton(button);
-        setText(text);
-        setLoader(loader);
-
         generateRand();
     }, [])
 
     const generateRand = () => {
         const random = Math.random();
-        answer.style.color = green;
-        button.style.backgroundColor = green;
-        text.style.display = 'block';
-        loader.style.display = 'none';
+        answer.current.style.color = green;
+        button.current.style.backgroundColor = green;
+        text.current.style.display = 'block';
+        loader.current.style.display = 'none';
 
         if (random > 0.5) {
             setResult('YES');
@@ -38,23 +30,22 @@ const index = () => {
     }
 
     const animation = () => {
-        answer.style.color = grey;
-        button.style.backgroundColor = grey;
-        text.style.display = 'none';
-        loader.style.display = 'block';
+        answer.current.style.color = grey;
+        button.current.style.backgroundColor = grey;
+        text.current.style.display = 'none';
+        loader.current.style.display = 'block';
 
         setTimeout(() => {
             generateRand();
         }, 250);
     }
 
-
     return (
         <div className="container">
-            <h1 id="result" className="result">{result}</h1>
-            <button id="try-again" className="btn-try-again" type="button" onClick={animation}>
-                <div className="loader" id="loader"></div>
-                <p id="text">Intentar de nuevo</p>
+            <h1 className="result" ref={answer}>{result}</h1>
+            <button ref={button} className="btn-try-again" type="button" onClick={animation}>
+                <div className="loader" ref={loader}></div>
+                <p ref={text}>Intentar de nuevo</p>
             </button>
             <Link href="/">
                 <a className="header-link">
@@ -88,6 +79,9 @@ const index = () => {
                     font-size: 1.4rem;
                     border-radius: 3px;
                 }
+                .btn-try-again:hover {
+                    cursor: pointer;
+                }
                 .header-link {
                     width: 50%;
                     max-width: 175px;
@@ -101,10 +95,12 @@ const index = () => {
                     height: 45px;
                     font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
                 }
-
+                .btn-home:hover {
+                    cursor: pointer;
+                }
                 .loader {
-                    border: 5px solid #f3f3f3; /* Light grey */
-                    border-top: 5px solid #3498db; /* Blue */
+                    border: 5px solid #f3f3f3; 
+                    border-top: 5px solid #3498db;
                     border-radius: 50%;
                     width: 25px;
                     height: 25px;

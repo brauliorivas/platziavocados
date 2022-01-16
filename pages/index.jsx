@@ -1,10 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import Item from '@components/Item/Item';
-// import fetch from 'isomorphic-unfetch';
 
 export const getServerSideProps = async () => {
-  const response = await fetch('http://localhost:3000/api/avo');
+  const protocol = process.env.PROTOCOL;
+  const url = process.env.URL;
+
+  const response = await fetch(`${protocol}${url}/api/avo`);
   const items = await response.json(); 
 
   return {
