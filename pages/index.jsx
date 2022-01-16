@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Item from '@components/Item/Item';
+// import fetch from 'isomorphic-unfetch';
 
-const HomePage = () => {
-  const [items, setItems] = useState([]);
+export const getServerSideProps = async () => {
+  const response = await fetch('http://localhost:3000/api/avo');
+  const items = await response.json(); 
 
-  useEffect(() => {
-    async function getItems() {
-      const res = await fetch('/api/avo');
-      const data = await res.json();
-      setItems(data.data);
+  return {
+    props: {
+      items: items.data
     }
+  }
+}
 
-    getItems();
-  }, []);
+const HomePage = ( { items } ) => {
 
   return (
     <div className="container">
