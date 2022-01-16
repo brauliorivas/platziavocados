@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Item from '@components/Item/Item';
 
+// ( server side rendered)
 // export const getServerSideProps = async () => { // SSR
 //   const protocol = process.env.PROTOCOL;
 //   const url = process.env.URL;
@@ -16,13 +17,12 @@ import Item from '@components/Item/Item';
 //   }
 // }
 
-// SSG
+// SSG (static site generation)
 export const getStaticProps = async () => { // solo paginas, no componentes al igual que SSR
   const protocol = process.env.PROTOCOL;
   const url = process.env.URL;
 
-  // const response = await fetch(`${protocol}${url}/api/avo`);
-  const response = await fetch(`https://platziavocados.vercel.app/api/avo`);
+  const response = await fetch(`${protocol}${url}/api/avo`);
   const items = await response.json(); 
 
   return {

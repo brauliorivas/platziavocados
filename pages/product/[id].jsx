@@ -3,9 +3,11 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import CartContext from '../../context/CartContext';
 // import { GetStaticProps } from 'next';
+const protocol = process.env.PROTOCOL;
+const url = process.env.URL;
 
 export const getStaticPaths = async () => {
-  const response = await fetch(`https://platziavocados.vercel.app/api/avo`);
+  const response = await fetch(`${protocol}${url}/api/avo`);
   const { data } = await response.json(); 
 
   const paths = data.map(({ id }) => ({
@@ -21,9 +23,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params }) => { // solo paginas, no componentes al igual que SSR
-  // const protocol = process.env.PROTOCOL;
-  // const url = process.env.URL;
-  const response = await fetch(`https://platziavocados.vercel.app/api/avo/${params.id}`);
+  const response = await fetch(`${protocol}${url}/api/avo/${params.id}`);
   const item = await response.json(); 
 
   return {

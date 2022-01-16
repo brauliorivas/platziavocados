@@ -4,6 +4,10 @@ import '../global.css';
 import useCart from '../hooks/useCart';
 import CartContext from '../context/CartContext';
 
+export function reportWebVitals(metric) {
+  // console.log(metric); // metricas 
+}
+
 function MyApp({ Component, pageProps } ) {
   const cart = useCart();
   // usar myapp para context, providers, theme, etc
